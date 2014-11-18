@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SA39_PROJECTModelStoreContainer" CdmEntityContainer="SA39_PROJECTEntities1">
+    <EntitySetMapping Name="bookingdetails">
+      <EntityTypeMapping TypeName="SA39_PROJECTModel.bookingdetail">
+        <MappingFragment StoreEntitySet="bookingdetails">
+          <ScalarProperty Name="Booking_id" ColumnName="Booking_id" />
+          <ScalarProperty Name="Member_id" ColumnName="Member_id" />
+          <ScalarProperty Name="Facility_id" ColumnName="Facility_id" />
+          <ScalarProperty Name="Booking_date" ColumnName="Booking_date" />
+          <ScalarProperty Name="Booking_time" ColumnName="Booking_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facilitydetails">
+      <EntityTypeMapping TypeName="SA39_PROJECTModel.facilitydetail">
+        <MappingFragment StoreEntitySet="facilitydetails">
+          <ScalarProperty Name="Facility_id" ColumnName="Facility_id" />
+          <ScalarProperty Name="Facility_name" ColumnName="Facility_name" />
+          <ScalarProperty Name="Facility_desc" ColumnName="Facility_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="maintainancedetails">
+      <EntityTypeMapping TypeName="SA39_PROJECTModel.maintainancedetail">
+        <MappingFragment StoreEntitySet="maintainancedetails">
+          <ScalarProperty Name="facility_id" ColumnName="facility_id" />
+          <ScalarProperty Name="startdate" ColumnName="startdate" />
+          <ScalarProperty Name="enddate" ColumnName="enddate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="memberdetails">
+      <EntityTypeMapping TypeName="SA39_PROJECTModel.memberdetail">
+        <MappingFragment StoreEntitySet="memberdetails">
+          <ScalarProperty Name="Member_id" ColumnName="Member_id" />
+          <ScalarProperty Name="Member_name" ColumnName="Member_name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Contact_number" ColumnName="Contact_number" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ref_key">
+      <EntityTypeMapping TypeName="SA39_PROJECTModel.ref_key">
+        <MappingFragment StoreEntitySet="ref_key">
+          <ScalarProperty Name="r_index" ColumnName="r_index" />
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userdetails">
+      <EntityTypeMapping TypeName="SA39_PROJECTModel.userdetail">
+        <MappingFragment StoreEntitySet="userdetails">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

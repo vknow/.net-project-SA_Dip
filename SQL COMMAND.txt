@@ -1,0 +1,50 @@
+//New userDetails
+
+create table userdetails (Username nvarchar(20) not null,
+Password nvarchar(20) not null,
+Role nvarchar(20) not null,
+Primary key (Username))
+
+create table memberdetails ( Member_id nvarchar(10) not null,
+Member_name nvarchar(30) not null,Gender char(1) not null,
+Contact_number nvarchar(15),Email nvarchar(30),primary key
+(Member_id))
+
+
+create table facilitydetails (Facility_id nvarchar(10) not null,
+Facility_name nvarchar(30) not null,
+Facility_desc nvarchar(50),primary key (Facility_id))
+
+
+create table bookingdetails( Booking_id integer not null,
+Member_id nvarchar(10) not null,Facility_id nvarchar(10) not null,
+Booking_date Date not null,Booking_time varchar(10) not null,primary key (Booking_id),
+Foreign key (member_id) references memberdetails(member_id),
+foreign key  (Facility_id) references facilitydetails(facility_id))
+
+create table maintainancedetails(facility_id nvarchar(10) not null,
+startdate Date not null,enddate Date not null,primary key(facility_id,startdate))
+								
+
+insert into memberdetails values ('a002a' , 'Mani' ,'M','84547754','mani@gmial.com')
+insert into memberdetails values ('a003a' , 'Venkat' ,'M','45758457','r_venki@gmial.com')
+insert into memberdetails values ('a004a' , 'Dai' ,'M','75485465','dai_99@gmial.com')
+insert into memberdetails values ('a005a' , 'Linga' ,'F','77459685','vling_783@gmial.com')
+insert into memberdetails values ('a006a' , 'Han Mer' ,'M','96545458','mr_hansgmial.com')
+insert into memberdetails values ('a007a' , 'Jin' ,'F','54585695','Jin_myi@gmial.com')
+insert into memberdetails values ('a008a' , 'Pyee Pyee' ,'F','74585698','pyee_pyee@gmial.com')
+insert into memberdetails values ('a009a' , 'Ashquie' ,'M','57575757','ashique_win@outlook.com')
+
+insert into facilitydetails values('TT1','TableTennis','') 
+insert into facilitydetails values('TT2','TableTennis','') 
+insert into facilitydetails values('TT3','TableTennis','') 
+insert into facilitydetails values('TT4','TableTennis','') 
+
+insert into facilitydetails values('TC1','Tennis','') 
+insert into facilitydetails values('TC2','Tennis','') 
+insert into facilitydetails values('TC3','Tennis','') 
+
+insert into facilitydetails values('BT1','Badminton','') 
+insert into facilitydetails values('BT2','Badminton','') 
+insert into facilitydetails values('BT3','Badminton','') 
+insert into facilitydetails values('BT4','Badminton','') 

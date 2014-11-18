@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SA39_PROJECTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bookingdetail">
+    <Key>
+      <PropertyRef Name="Booking_id" />
+    </Key>
+    <Property Name="Booking_id" Type="Int32" Nullable="false" />
+    <Property Name="Member_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Facility_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Booking_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Booking_time" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="facilitydetail" Relationship="Self.FK__bookingde__Facil__0DAF0CB0" FromRole="bookingdetails" ToRole="facilitydetails" />
+    <NavigationProperty Name="memberdetail" Relationship="Self.FK__bookingde__Membe__0CBAE877" FromRole="bookingdetails" ToRole="memberdetails" />
+  </EntityType>
+  <EntityType Name="facilitydetail">
+    <Key>
+      <PropertyRef Name="Facility_id" />
+    </Key>
+    <Property Name="Facility_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Facility_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Facility_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bookingdetails" Relationship="Self.FK__bookingde__Facil__0DAF0CB0" FromRole="facilitydetails" ToRole="bookingdetails" />
+    <NavigationProperty Name="maintainancedetails" Relationship="Self.FK_maintainancedetails_facilitydetails" FromRole="facilitydetails" ToRole="maintainancedetails" />
+  </EntityType>
+  <EntityType Name="maintainancedetail">
+    <Key>
+      <PropertyRef Name="facility_id" />
+      <PropertyRef Name="startdate" />
+    </Key>
+    <Property Name="facility_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="startdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="enddate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="facilitydetail" Relationship="Self.FK_maintainancedetails_facilitydetails" FromRole="maintainancedetails" ToRole="facilitydetails" />
+  </EntityType>
+  <EntityType Name="memberdetail">
+    <Key>
+      <PropertyRef Name="Member_id" />
+    </Key>
+    <Property Name="Member_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Member_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Contact_number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bookingdetails" Relationship="Self.FK__bookingde__Membe__0CBAE877" FromRole="memberdetails" ToRole="bookingdetails" />
+  </EntityType>
+  <EntityType Name="ref_key">
+    <Key>
+      <PropertyRef Name="r_index" />
+    </Key>
+    <Property Name="r_index" Type="Int32" Nullable="false" />
+    <Property Name="book_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="userdetail">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__bookingde__Facil__0DAF0CB0">
+    <End Role="facilitydetails" Type="Self.facilitydetail" Multiplicity="1" />
+    <End Role="bookingdetails" Type="Self.bookingdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facilitydetails">
+        <PropertyRef Name="Facility_id" />
+      </Principal>
+      <Dependent Role="bookingdetails">
+        <PropertyRef Name="Facility_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__bookingde__Membe__0CBAE877">
+    <End Role="memberdetails" Type="Self.memberdetail" Multiplicity="1" />
+    <End Role="bookingdetails" Type="Self.bookingdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="memberdetails">
+        <PropertyRef Name="Member_id" />
+      </Principal>
+      <Dependent Role="bookingdetails">
+        <PropertyRef Name="Member_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_maintainancedetails_facilitydetails">
+    <End Role="facilitydetails" Type="Self.facilitydetail" Multiplicity="1" />
+    <End Role="maintainancedetails" Type="Self.maintainancedetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facilitydetails">
+        <PropertyRef Name="Facility_id" />
+      </Principal>
+      <Dependent Role="maintainancedetails">
+        <PropertyRef Name="facility_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SA39_PROJECTEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bookingdetails" EntityType="Self.bookingdetail" />
+    <EntitySet Name="facilitydetails" EntityType="Self.facilitydetail" />
+    <EntitySet Name="maintainancedetails" EntityType="Self.maintainancedetail" />
+    <EntitySet Name="memberdetails" EntityType="Self.memberdetail" />
+    <EntitySet Name="ref_key" EntityType="Self.ref_key" />
+    <EntitySet Name="userdetails" EntityType="Self.userdetail" />
+    <AssociationSet Name="FK__bookingde__Facil__0DAF0CB0" Association="Self.FK__bookingde__Facil__0DAF0CB0">
+      <End Role="facilitydetails" EntitySet="facilitydetails" />
+      <End Role="bookingdetails" EntitySet="bookingdetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__bookingde__Membe__0CBAE877" Association="Self.FK__bookingde__Membe__0CBAE877">
+      <End Role="memberdetails" EntitySet="memberdetails" />
+      <End Role="bookingdetails" EntitySet="bookingdetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_maintainancedetails_facilitydetails" Association="Self.FK_maintainancedetails_facilitydetails">
+      <End Role="facilitydetails" EntitySet="facilitydetails" />
+      <End Role="maintainancedetails" EntitySet="maintainancedetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
